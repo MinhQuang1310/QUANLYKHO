@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUẢN LÝ KHO</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; /* Nền trang nhẹ nhàng */
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #6b8ede; /* Màu header đậm hơn */
+            color: white;
+            padding: 30px 20px;
+            position: relative;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
+        }
+        .header img {
+            position: absolute;
+            left: 20px;
+            height: 100px; /* Tăng kích thước logo */
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 32px; /* Tăng kích thước tiêu đề */
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .info-box {
+            position: relative;
+            margin: 20px auto;
+            padding: 20px;
+            width: 320px; /* Nhỏ gọn, cân đối */
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng cho hộp */
+        }
+        .info-box h2 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: #0056b3;
+            text-align: center; /* Căn giữa tiêu đề */
+            text-transform: uppercase;
+        }
+        .info-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .info-box table td {
+            padding: 8px 5px;
+            font-size: 14px;
+            color: #333333;
+        }
+        .info-box table td:first-child {
+            font-weight: bold;
+            width: 40%; /* Chiều rộng cân đối hơn */
+            color: #0056b3; /* Màu chữ nhấn mạnh */
+        }
+        .info-box table tr {
+            border-bottom: 1px solid #e0e0e0; /* Đường kẻ giữa các hàng */
+        }
+        .info-box table tr:last-child {
+            border-bottom: none;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666666;
+        }
+        footer a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px; /* Khoảng cách từ dưới */
+            right: 20px;  /* Khoảng cách từ phải */
+            background-color: #007bff; /* Màu nền */
+            color: white; /* Màu chữ */
+            border: none; /* Bỏ viền */
+            border-radius: 50%; /* Bo tròn */
+            padding: 10px 15px; /* Khoảng cách xung quanh chữ */
+            font-size: 16px; /* Kích thước chữ */
+            cursor: pointer; /* Con trỏ khi di chuột */
+            display: none; /* Ẩn khi mới load */
+            z-index: 1000; /* Đảm bảo nút hiển thị trên các phần tử khác */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
+        }
+        
+        #scrollToTopBtn:hover {
+            background-color: #0056b3; /* Màu nền khi hover */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="https://qn.iuh.edu.vn/uploads/2022/07/Logo_IUH-1024x415.png" alt="IUH Logo">
+        <h1>QUẢN LÝ KHO</h1>
+    </div>
+    <!-- Information Box -->
+    <div class="info-box">
+        <h2>Thông Tin</h2>
+        <table>
+            <tr>
+                <td>Giảng Viên Hướng Dẫn:</td>
+                <td>TS.Lê Văn Hùng</td>
+            </tr>
+            <tr>
+                <td>Sinh Viên 1:</td>
+                <td>Nguyễn Hữu Lộc</td>
+            </tr>
+            <tr>
+                <td>Sinh Viên 2:</td>
+                <td>Nguyễn Quang Hùng</td>
+            </tr>
+        </table>
+    </div>
+    <div class="container mt-4" style="margin: 0 45%;">
+        <a href="/data" class="btn btn-primary">Go To Upload Page</a>
+    </div>
+      <!-- Footer -->
+      <footer style="margin-top: 30%;">
+        © 2024 Quản Lý Kho | <a href="https://iuh.edu.vn">IUH Website</a>
+    </footer>
+</body>
+</html>
