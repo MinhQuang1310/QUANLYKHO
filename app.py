@@ -11,6 +11,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 import os.path
 import pickle
+import json
 import csv
 from io import StringIO
 import openpyxl
@@ -53,9 +54,9 @@ def get_google_sheets_credentials():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            GOOGLE_CREDENTIALS = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json',
-                SCOPES
+                GOOGLE_CREDENTIALS, SCOPES
             )
             creds = flow.run_local_server(port=5000)  # Dùng port 5000 hoặc port mở của bạn
             
@@ -258,5 +259,10 @@ def export_invoice():
         return jsonify({"error": str(e)}), 500
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001, use_reloader=False)
+# if __name__ == '__main__':
+#     app.run(debug=True, port=5001, use_reloader=False)
+    
+    
+# Chạy ứng dụng trên Vercel
+app = app
+
