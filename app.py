@@ -43,27 +43,21 @@ SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
 RANGE_NAME = os.getenv('RANGE_NAME')
 
 def get_google_sheets_credentials():
-    """Lấy và cập nhật credentials cho Google Sheets API."""
-    # Sử dụng biến môi trường thay vì file
+    """Lấy và cập nhật credentials từ nội dung JSON trong biến môi trường."""
     creds = None
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
             creds = pickle.load(token)
-    
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            GOOGLE_CREDENTIALS = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
-            flow = InstalledAppFlow.from_client_secrets_file(
-                GOOGLE_CREDENTIALS, SCOPES
-            )
-            creds = flow.run_local_server(port=5000)  # Dùng port 5000 hoặc port mở của bạn
-            
-        # Lưu lại token
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(creds, token)
-    
+            # Lấy nội dung JSON từ biến môi trường
+            credentials_info = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
+            flow = InstalledAppFlow.from_client_config(credentials_info, SCOPES)
+            creds = flow.run_local_server(port=5000)
+            with open('token.pickle', 'wb') as token:
+                pickle.dump(creds, token)
     return creds
 
 def fetch_data_from_sheets():
@@ -94,7 +88,7 @@ def fetch_data_from_sheets():
 
 @app.route('/')
 def home():
-    return render_template('plot.html', table=None, plot_url=None)
+    return render_template('index.html', table=None, plot_url=None)
 
 @app.route('/data')
 def show_data():
@@ -259,10 +253,10 @@ def export_invoice():
         return jsonify({"error": str(e)}), 500
 
 
-# if __name__ == '__main__':
-#     app.run(debug=True, port=5001, use_reloader=False)
+if __name__ == '__main__':
+    app.run(debug=True, port=5001, use_reloader=False)
     
     
 # Chạy ứng dụng trên Vercel
-app = app
+# app = app
 

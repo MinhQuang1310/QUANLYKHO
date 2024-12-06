@@ -9,6 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
+            margin-right: -10px !important;
             padding: 0;
             background-color: #f4f4f9; /* Nền trang nhẹ nhàng */
         }
@@ -25,7 +26,8 @@
         .header img {
             position: absolute;
             left: 20px;
-            height: 100px; /* Tăng kích thước logo */
+            height: 98px; /* Tăng kích thước logo */
+            margin-top: -50px;
         }
         .header h1 {
             margin: 0;
@@ -103,12 +105,35 @@
             background-color: #0056b3; /* Màu nền khi hover */
         }
 
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .footer-left,
+        .footer-right {
+            width: 50%;
+            text-align: center;
+        }
+
+        .footer-left img,
+        .footer-right img {
+            max-width: 75%;
+            border-radius: 25px;
+            height: auto;
+        }
+
     </style>
 </head>
 <body>
     <!-- Header -->
     <div class="header">
-        <img src="https://qn.iuh.edu.vn/uploads/2022/07/Logo_IUH-1024x415.png" alt="IUH Logo">
+        <a href="/">
+            <img src="https://qn.iuh.edu.vn/uploads/2022/07/Logo_IUH-1024x415.png" alt="IUH Logo">
+        </a>
+        
         <h1>QUẢN LÝ KHO</h1>
     </div>
     <!-- Information Box -->
@@ -129,11 +154,20 @@
             </tr>
         </table>
     </div>
-    <div class="container mt-4" style="margin: 0 45%;">
+    <div class="container mt-4" style="margin: 0 41%;">
         <a href="/data" class="btn btn-primary">Go To Upload Page</a>
+        <a href="https://www.facebook.com/" class="btn btn-primary">Go To Facebook</a>
+    </div>
+    <div class="footer-container">
+        <div class="footer-left">
+        <img src="https://th.bing.com/th/id/R.7788bba6e1cf6706529e9c03d1561ae9?rik=zSadUW8fKnBZXw&pid=ImgRaw&r=0" alt="IUH Logo">
+        </div>
+        <div class="footer-right">
+        <img src="https://th.bing.com/th/id/R.7788bba6e1cf6706529e9c03d1561ae9?rik=zSadUW8fKnBZXw&pid=ImgRaw&r=0" alt="IUH Logo">
+        </div>
     </div>
       <!-- Footer -->
-      <footer style="margin-top: 30%;">
+      <footer style="margin-top: 5px;">
         © 2024 Quản Lý Kho | <a href="https://iuh.edu.vn">IUH Website</a>
     </footer>
 </body>
