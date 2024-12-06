@@ -9,6 +9,7 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
+from google.oauth2.service_account import Credentials
 import os.path
 import pickle
 import json
@@ -44,21 +45,34 @@ RANGE_NAME = os.getenv('RANGE_NAME')
 
 def get_google_sheets_credentials():
     """Lấy và cập nhật credentials từ nội dung JSON trong biến môi trường."""
-    creds = None
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            # Lấy nội dung JSON từ biến môi trường
-            credentials_info = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
-            flow = InstalledAppFlow.from_client_config(credentials_info, SCOPES)
-            creds = flow.run_local_server(port=5000)
-            with open('token.pickle', 'wb') as token:
-                pickle.dump(creds, token)
-    return creds
+    # creds = None
+    # if os.path.exists('token.pickle'):
+    #     with open('token.pickle', 'rb') as token:
+    #         creds = pickle.load(token)
+    # if not creds or not creds.valid:
+    #     if creds and creds.expired and creds.refresh_token:
+    #         creds.refresh(Request())
+    #     else:
+    #         # Lấy nội dung JSON từ biến môi trường
+    #         credentials_info = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
+    #         flow = InstalledAppFlow.from_client_config(credentials_info, SCOPES)
+    #         creds = flow.run_local_server(port=5000)
+    #         with open('token.pickle', 'wb') as token:
+    #             pickle.dump(creds, token)
+    # return creds
+    """Sử dụng Service Account từ biến môi trường."""
+    try:
+        # Lấy nội dung JSON từ biến môi trường
+        credentials_info = json.loads(os.getenv("GOOGLE_SERVICE_ACCOUNT"))
+        
+        # Xác thực với Service Account
+        creds = Credentials.from_service_account_info(
+            credentials_info,
+            scopes=SCOPES
+        )
+        return creds
+    except Exception as e:
+        raise Exception(f"Error setting up Service Account: {e}")
 
 def fetch_data_from_sheets():
     global df
