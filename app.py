@@ -253,10 +253,10 @@ def export_invoice():
         return jsonify({"error": str(e)}), 500
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001, use_reloader=False)
+# if __name__ == '__main__':
+#     app.run(debug=True, port=5001, use_reloader=False)
     
     
 # Chạy ứng dụng trên Vercel
-# app = app
+app = app
 
